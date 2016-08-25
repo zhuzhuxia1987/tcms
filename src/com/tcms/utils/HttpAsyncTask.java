@@ -1,0 +1,289 @@
+package com.tcms.utils;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.entity.StringEntity;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.tcms.Constant;
+import com.tcms.TCMSApplication;
+import com.tcms.R;
+import com.tcms.entity.HttpDatas;
+
+/**
+ * @ClassName: HttpAsyncTask
+ * @Description: 静态内部类 http异步请求类
+ * @author 朱恒章
+ * @date 2016-5-17 上午11:37:58
+ * @package_name 路径：com.tcms.utils
+ * @param HttpDatas
+ *            封装的一些请求参数
+ * @param Integer
+ *            返回值为int包装类型
+ */
+public class HttpAsyncTask extends AsyncTask<HttpDatas, Void, Integer> {
+	private TaskCallBack callback;
+	private Context context;
+	private ProgressDialog dialog;
+	private String dialogStr;
+
+	/**
+	 * 构造函数
+	 * 
+	 * @param callback
+	 *            回调函数
+	 */
+	public HttpAsyncTask(TaskCallBack callback, Context context) {
+		super();
+		this.callback = callback;
+		this.context = context;
+	}
+
+	/**
+	 * 构造函数
+	 * 
+	 * @param callback
+	 *            回调函数
+	 */
+	public HttpAsyncTask(TaskCallBack callback, Context context,
+			String dialogStr) {
+		super();
+		this.callback = callback;
+		this.context = context;
+		this.dialogStr = dialogStr;
+
+	}
+
+	@Override
+	protected Integer doInBackground(HttpDatas... params) {
+		// TODO Auto-generated method stub
+		HttpDatas datas = null;
+		if (params != null) {
+			datas = params[0];
+		} else {
+			return Constant.NULLPARAMEXCEPTION;
+		}
+		DefaultHttpClient client = new DefaultHttpClient();
+		HttpParams httParams = client.getParams();
+		HttpConnectionParams.setConnectionTimeout(httParams, 20000);
+		HttpConnectionParams.setSoTimeout(httParams, 20000);
+		
+		
+		HttpProtocolParams.setContentCharset(httParams, HTTP.UTF_8);
+		HttpProtocolParams.setUseExpectContinue(httParams, false);
+		if (TCMSApplication.cookieStore != null) {
+			client.setCookieStore(TCMSApplication.cookieStore);
+		}
+		try {
+
+			HttpResponse responese = null;
+			if (datas.isPost()) {
+				responese = doPost(datas, client);
+			} else {
+				responese = doGet(datas, client);
+			}
+			int responeseCode = responese.getStatusLine().getStatusCode();
+			if (responeseCode == HttpStatus.SC_OK) {
+				String result = EntityUtils.toString(responese.getEntity(),
+						HTTP.UTF_8);
+				System.out.println(result);
+				TCMSApplication.cookieStore = client.getCookieStore();
+				return callback.excueHttpResponse(result);
+			} else if (399 < responeseCode && responeseCode < 500) {// 请求无响应拒绝等
+				return Constant.NO_RESPONSE;
+			} else if (500 <= responeseCode && responeseCode < 600) {// 服务器出错出现异常
+				return Constant.S_EXCEPTION;
+			} else {// 其它异常
+				System.out.println(responeseCode);
+				return Constant.RESPONESE_EXCEPTION;
+			}
+		} catch (ConnectTimeoutException e) {
+			e.printStackTrace();
+			return Constant.TIMEOUT;
+		} catch (UnknownHostException e) {
+			// 网络状态是否可用
+			if (!NetUtils.isHasNet(context)) {
+				return Constant.NO_NETWORK;// 无可用网络
+			} else {
+				e.printStackTrace();
+				return Constant.RESPONESE_EXCEPTION;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return Constant.RESPONESE_EXCEPTION;
+		}
+
+	}
+
+	protected void onPreExecute() {
+		if (dialogStr != null && !"".equals(dialogStr)) {
+			dialog = new ProgressDialog(context) {
+				@Override
+				public void cancel() {
+					if (!HttpAsyncTask.this.isCancelled()) {
+						HttpAsyncTask.this.cancel(true);
+					}
+					Toast.makeText(context,
+							context.getString(R.string.cancelrequest), 0)
+							.show();
+					super.cancel();
+				}
+			};
+			dialog.setMessage(dialogStr);
+			dialog.setCanceledOnTouchOutside(false);
+			dialog.show();
+		}
+		callback.beforeTask();
+		super.onPreExecute();
+	}
+
+	@Override
+	protected void onPostExecute(Integer result) {
+		callback.afterTask(result);
+		if (dialog != null) {
+			dialog.dismiss();
+		}
+		super.onPostExecute(result);
+	}
+
+	/**
+	 * 用get方式发送的请求
+	 * 
+	 * @param datas
+	 *            请求参数
+	 * @param client
+	 *            httpclient实体
+	 * @return http响应实体
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	private HttpResponse doGet(HttpDatas datas, DefaultHttpClient client)
+			throws ClientProtocolException, IOException {
+		// quest请求
+		List<BasicNameValuePair> list = datas.getParamList();
+		String url = datas.getUrl();
+		if (list != null && list.size() > 0) {
+			// StringBuffer buffer = new StringBuffer("?");
+			StringBuffer buffer = new StringBuffer("/");
+			BasicNameValuePair pair0 = list.get(0);
+			// buffer.append(pair0.getName() + "=" + pair0.getValue());
+			buffer.append(pair0.getValue());
+			if (list.size() > 1) {
+				for (int i = 1; i < list.size(); i++) {
+					BasicNameValuePair pair = list.get(i);
+					// buffer.append("&" + pair.getName() + "=" +
+					// pair.getValue());
+					buffer.append("/" + pair.getValue());
+				}
+			}
+			url = url + buffer.toString();
+
+		}
+		System.out.println("url: " + url);
+		HttpGet get = new HttpGet(url);
+		get.addHeader("Content-Type","application/json");
+		return client.execute(get);
+	}
+
+	/**
+	 * 通过Post方式发送的请求
+	 * 
+	 * @param datas
+	 *            请求参数
+	 * @param client
+	 *            httpclient实体
+	 * @return http响应实体
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	private HttpResponse doPost(HttpDatas datas, DefaultHttpClient client)
+			throws ClientProtocolException, IOException {
+//		List<BasicNameValuePair> list = datas.getParamList();
+		if (datas.getJsonObject()==null) {
+			// 如果没有任何请求参数直接用get请求
+			if(datas.getJsonarray()!=null){
+				String url = datas.getUrl();
+				System.out.println("url: " + url);
+				HttpPost post = new HttpPost(url);
+//				HttpEntity entity = new UrlEncodedFormEntity(list);
+				StringEntity entity=new StringEntity(datas.getJsonarray().toString(), "utf-8");
+//				post.setHeader("Content-Type", "application/json");
+				entity.setContentType("application/json");
+
+				post.setEntity(entity);
+
+				return client.execute(post);
+			}
+			return doGet(datas, client);
+		}
+		String url = datas.getUrl();
+		System.out.println("url: " + url);
+		HttpPost post = new HttpPost(url);
+//		HttpEntity entity = new UrlEncodedFormEntity(list);
+		StringEntity entity=new StringEntity(datas.getJsonObject().toString(), "utf-8");
+//		post.setHeader("Content-Type", "application/json");
+		entity.setContentType("application/json");
+
+		post.setEntity(entity);
+
+		return client.execute(post);
+
+	}
+
+	/**
+	 * http一步请求的回调函数 接口
+	 * 
+	 * @author lanhaizhong
+	 * 
+	 */
+	public interface TaskCallBack {
+
+		/**
+		 * 任务启动前的操作
+		 */
+		public void beforeTask();
+
+		/**
+		 * 后台执行http 请求得到相应后的处理
+		 * 
+		 * @param respondsStr
+		 *            相应实体的字符串
+		 * @return 状态码
+		 */
+		public int excueHttpResponse(String respondsStr);
+
+		/**
+		 * 任务结束会的操作
+		 * 
+		 * @param result
+		 */
+		public void afterTask(int result);
+
+	}
+
+}

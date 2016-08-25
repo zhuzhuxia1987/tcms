@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white2"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spa72"
+              android:background="@color/white2"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/pad3"
+            android:layout_marginRight="2dp"
+            android:text="@string/cailiao"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/f26" />
+
+        <Spinner
+            android:id="@+id/sp_cailiao"
+            style="@style/normal_textstyle"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:animationCache="true"
+            android:background="@drawable/text_spinner_select_backlound"
+            android:drawSelectorOnTop="true"
+            android:lineSpacingExtra="3dp"
+            android:padding="@dimen/pad12" 
+            />
+
+         <TextView
+             android:id="@+id/tv_cailiaonull"
+             style="@style/normal_textstyle"
+             android:layout_width="fill_parent"
+             android:layout_height="match_parent"
+             android:layout_centerInParent="true"
+             android:layout_gravity="center"
+             android:animationCache="true"
+             android:background="@drawable/text_spinner_select_backlound"
+             android:drawSelectorOnTop="true"
+             android:gravity="left|center"
+             android:lineSpacingExtra="3dp"
+             android:padding="@dimen/pad12"
+             android:text="可审材料为空"
+             android:textSize="@dimen/f24"
+             android:visibility="gone" />
+
+    </LinearLayout>
+
+<!--     <View -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="1dp" -->
+<!--         android:background="@color/linecolor" /> -->
+
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="@dimen/spa72" -->
+    <!-- android:orientation="horizontal" > -->
+
+
+    <!-- <TextView -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_gravity="center_vertical" -->
+    <!-- android:layout_marginLeft="@dimen/pad3" -->
+    <!-- android:layout_marginRight="2dp" -->
+    <!-- android:text="@string/baogao" -->
+    <!-- android:textColor="@color/textcolor" -->
+    <!-- android:textSize="@dimen/f26" /> -->
+
+
+    <!-- <Spinner -->
+    <!-- android:id="@+id/sp_baogao" -->
+    <!-- style="@style/normal_textstyle" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="match_parent" -->
+    <!-- android:layout_centerInParent="true" -->
+    <!-- android:layout_gravity="center" -->
+    <!-- android:lineSpacingExtra="3dp" -->
+    <!-- android:padding="@dimen/pad12" /> -->
+    <!-- </LinearLayout> -->
+
+
+    <!-- <View -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="1dp" -->
+    <!-- android:background="@color/linecolor" /> -->
+
+    <Button
+        android:id="@+id/bt_daishenpi_chaxun"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spa72"
+        android:layout_marginLeft="@dimen/pad3"
+        android:layout_marginRight="@dimen/pad3"
+        android:layout_marginTop="@dimen/spa120"
+        android:background="@drawable/blue_button_background_selector"
+        android:text="@string/daishenpichaxun"
+        android:textColor="@color/white2"
+        android:textSize="@dimen/f21" />
+
+    <TextView
+        android:id="@+id/tv_dangqianuser"
+        style="@style/normal_textstyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="检测到您在此机构的用户名：null"
+        android:textColor="@color/viewfinder_laser"
+         android:layout_marginTop="@dimen/pad3"
+        android:textSize="@dimen/f13" />
+
+</LinearLayout>

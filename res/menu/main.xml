@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tcms.MainActivity" >
+
+    <item
+        android:id="@+id/pizhun"
+        android:orderInCategory="100"
+        android:title="批准"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/tuihui"
+        android:orderInCategory="100"
+        android:title="退回"
+        app:showAsAction="never"/>
+
+</menu>

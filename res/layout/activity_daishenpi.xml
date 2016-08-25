@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cor4"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/lv_projects"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="0px" >
+        </ListView>
+
+        <TextView
+            android:id="@+id/tv_no_project"
+            style="@style/normal_textstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/noproject"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/wave_line"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/bt_yijianshenpi"
+                    style="@style/normal_textstyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:drawableLeft="@null"
+                    android:drawablePadding="0px"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingLeft="@dimen/investment_chekbox_pandding"
+                    android:paddingRight="@dimen/investment_chekbox_pandding"
+                    android:text="批量审批" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/divide" />
+            </RelativeLayout>
+
+           
+
+                <CheckBox
+                    android:id="@+id/bt_quanxuan"
+                    style="@style/normal_textstyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:drawableLeft="@null"
+                    android:drawablePadding="0px"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingLeft="@dimen/investment_chekbox_pandding"
+                    android:paddingRight="@dimen/investment_chekbox_pandding"
+                    android:text="@string/sequ2" />
+<!--             </RelativeLayout> -->
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_previous"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/translucent_button_left_selector"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/translucent_button_right_selector"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E9E9E9"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dip" >
+
+        <TextView
+            android:id="@+id/tv_chengshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dip"
+            android:text="请选择省市区"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bt_qhdq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dip"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#000000" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dip"
+        android:orientation="horizontal" >
+
+        <com.tcms.city.CityPicker
+            android:id="@+id/citypicker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spa90"
+        android:background="@color/white2"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_qh_jigou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/pad3"
+            android:layout_marginRight="2dp"
+            android:text="@string/jigoulist"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/f26" />
+
+        <Spinner
+            android:id="@+id/sp_qh_jigoulist"
+            style="@style/normal_textstyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/pad3"
+            android:background="@drawable/text_spinner_select_backlound"
+            android:lineSpacingExtra="3dp"
+            android:padding="@dimen/pad12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E9E9E9"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bt_city_tijiao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/blue_button_background_selector"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>

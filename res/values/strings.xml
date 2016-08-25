@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">检测管理</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <!-- HTTP　请求　 -->
+    <string name="requesting">正在发送请求……请稍候</string>
+    <string name="no_response">请求无响应，请从新发送</string>
+    <string name="server_exception">对不起，服务器出现异常请您稍后再访问</string>
+    <string name="responese_exception">响应异常，请重新发送请求</string>
+    <string name="timeout">请求连接超时，请重新发送请求</string>
+    <string name="no_network">当前网络不可用，请检查网络设置</string>
+    <string name="nullparamexception">空参数异常</string>
+    <string name="cancelrequest">已取消请求</string>
+    <string name="checking_captcha">正在验证……请稍候</string>
+    <string name="loadingcailiao">正在加载材料...完成</string>
+    <string name="registering">正在注册……</string>
+    <string name="login_now">正在登录中……</string>
+    <string name="login_success">登录成功！</string>
+    <string name="loading">正在加载…请稍候…</string>
+    <string name="tijiao_ing">正在提交...</string>
+    <string name="tcmsname">升思检测管理系统</string>
+    <string name="android">安卓版</string>
+    <string name="phone_or_username">您的手机和或用户名</string>
+    <string name="login_pw">登录密码</string>
+    <string name="autoLogin">下次自动登录</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+    <string name="input_phone_num">请输入手机号码</string>
+    <string name="get_verification_code">点击获取验证码</string>
+    <string name="input_verification_code">请输入验证码</string>
+    <string name="null_captcha">验证码不能为空</string>
+    <string name="next_step">下一步</string>
+    <string name="readed_and_agree">已阅读并同意</string>
+    <string name="protocol_of_orong">《升思软件》</string>
+    <string name="username">&#160;&#160;&#160;用户名：</string>
+    <string name="cailiao">&#160;&#160;&#160;请选择材料：</string>
+    <string name="baogao">&#160;&#160;&#160;请选择报告：</string>
+     <string name="jigoulist">&#160;&#160;&#160;请选择机构：</string>
+    <string name="daishenpichaxun">查询</string>
+    <string name="password">登录密码：</string>
+    <string name="pass_word_prompt">6位以上推荐组合型密码</string>
+    <string name="transaction_password">其他</string>
+    <string name="register_and_login">注册登录</string>
+    <string name="send_message">验证码发送成功，请查收！</string>
+    <string name="phone_has_register">该手机号码已经注册</string>
+    <string name="getCaptcha_too_many">今日发送次数超出限制</string>
+    <string name="getCaptcha_frequently">你获取验证码过于频繁，先喝杯茶吧！</string>
+    <string name="null_phone">手机号码不能为空</string>
+    <string name="error_phone">输入的手机号码格式不正确</string>
+    <string name="null_account">帐号不能为空</string>
+    <string name="short_account">帐号不能低于3个字</string>
+    <string name="error_account">帐号格式不正确</string>
+    <string name="null_password">密码不能为空</string>
+    <string name="null_city">常在城市不能为空</string>
+    <string name="short_password">密码长度太短</string>
+    <string name="error_password">密码格式不正确</string>
+    <string name="number_password">登录密码不可为纯数字</string>
+    <string name="same_password">登录密码与交易密码不能相同</string>
+    <string name="null_tran_password">交易密码不能为空</string>
+    <string name="short_tran_password">交易密码长度太短</string>
+    <string name="error_tran_password">交易密码格式不正确</string>
+    <string name="number_tran_password">交易密码不可为纯数字</string>
+    <string name="registerSuccess">注册成功！</string>
+    <string name="tijiao_ok">提交成功！</string>
+    <string name="tijiao_error">提交失败！！</string>
+    <string name="pdf_null">PDF未生成！！</string>
+    <string name="organnull">当前城市没有检测机构！</string>
+    <string name="select_organ">请选择检测机构！</string>
+    <string name="baocun_err">保存失败，请重试！</string>
+    <string name="userformat">%1$s***%2$s</string>
+    <string name="phone_registerNotifide">您输入的手机号码已经注册了帐号为%1$s***%2$s的帐户，请用该账户直接登录</string>
+    <string name="error_pw_or_user">密码错误，请重新输入</string>
+    <string name="error_user">此用户未注册</string>
+    <string name="live_for_time">您确定要退出程序吗?</string>
+    <string name="clearuser">切换用户将清除用户登录信息(Y/N)?</string>
+    <string name="chognxinqidong">您已切换机构，是否重启</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="chengshi">请选择常用城市</string>
+    <string name="shiqu">市（区）</string>
+    <string name="sheng">省</string>
+    <!-- 版本更新 -->
+    <string name="findUpdate">发现更新</string>
+    <string name="update_now">立即更新</string>
+    <string name="not_yet">以后再说</string>
+    <string name="versionName">版本名称：</string>
+    <string name="description">描述：\n</string>
+    <string name="cancel_download">取消下载</string>
+    <string name="chushihua">正在初始化用户……请稍后</string>
+    <string name="newest">已是最新版本</string>
+    <string name="relogin">重新登录</string>
+    <string name="relogin_message">由于你长时间与服务器断开连接，您必须重新登录才能使用</string>
+    <string name="exit_app">退出程序</string>
+     <string name="gguser">更改用户</string>
+     <string name="chongqi_app">重新登录</string>
+    <string name="orong_protocol">感谢您使用升思软件：\n
+1、保障您的账户使用安全。\n
+2、\n
+3、\n
+4、</string>
+    <string name="chongxinxuanzhe">请重新选择省市</string>
+     <string name="presstel">点击咨询电话：</string>
+     <string name="telephone">0717-6623595</string>
+    <!-- 更多 -->
+    <string name="check_update">版本更新</string>
+    <string name="genggaidizhi">切换地区机构</string>
+    <string name="aboutus">关于我们</string>
+    <string name="help_caption">帮助说明</string>
+      <string name="web_view">WEB页面</string>
+    <string name="callforus">联系我们</string>
+    <string name="noproject">没有可审批的报告</string>
+    <string name="TCMS">建设工程质量检测管理软件系统</string>
+     <string name="shanghun">商品砼质量管理信息系统</string>
+    <string name="sequ1">材料\t</string>
+    <string name="sequ2">全选\t</string>
+    <string name="more">更多</string>
+      <string name="choose_jigou">切换地区机构</string>
+    <string name="version">版本号：</string>
+    <string name="update_date">更新日期</string>
+    <string name="doinvestment">可审批报告</string>
+    <string name="title_daishenpichaxun">待审批查询</string>
+    <string name="aboutus_info" formatted="false">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;湖北升思科技股份有限公司致力独立知识产权的软件产品研发，以“行业求至专、产品求至精、服务求至诚”为理念，力创中国建设行业信息化标杆企业。
+        \n宜昌软件行业龙头企业、三峡软件代表品牌
+        入选中国电子政务年鉴（2013）优秀软件公司
+        湖北省软件行业协会理事
+        “双软”认证企业\n
+        十年来，公司软件产品已销往全国21个省市，从单纯卖软件逐步发展成为卖服务、卖标准，在建设行业内实现“跨界”竞争的新型软件公司。</string>
+
+</resources>
